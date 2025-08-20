@@ -8,7 +8,6 @@ export const options = {
     { duration: '10s', target: 0 },   // Ramp-down to 0 users
   ],
   thresholds: {
-    // We want 95% of requests to be under 200ms.
     http_req_duration: ['p(95)<200'], 
   },
 };

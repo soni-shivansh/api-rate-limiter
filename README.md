@@ -62,38 +62,38 @@ Here is the high-level architecture of the system:
 
 ## Performance Benchmark
 
-The system was load-tested using k6 to simulate high traffic.
+The system was load-tested using k6 to simulate a sustained load of 100 virtual users.
 
-The service was able to sustain a throughput of **79 requests/second** with a **p(95) latency of less than 16ms**. This demonstrates its capability to handle significant load with minimal performance overhead.
+The service was able to sustain a throughput of **~80 requests/second** with a **p(95) latency of less than 12.62ms**, demonstrating its capability to handle significant load with minimal performance overhead.
 
 ```
 
   █ THRESHOLDS
 
     http_req_duration
-    ✓ 'p(95)<200' p(95)=15.35ms
+    ✓ 'p(95)<200' p(95)=12.62ms
 
 
   █ TOTAL RESULTS
 
-    checks_total.......: 7954    79.106958/s
-    checks_succeeded...: 100.00% 7954 out of 7954
-    checks_failed......: 0.00%   0 out of 7954
+    checks_total.......: 7984    79.454301/s
+    checks_succeeded...: 100.00% 7984 out of 7984
+    checks_failed......: 0.00%   0 out of 7984
 
     ✓ is status 200 or 429
 
     HTTP
-    http_req_duration..............: avg=11.44ms min=7.11ms  med=10.83ms max=404.8ms p(90)=13.56ms p(95)=15.35ms
-      { expected_response:true }...: avg=62.19ms min=14.67ms med=17.66ms max=404.8ms p(90)=108.9ms p(95)=256.85ms
-    http_req_failed................: 99.86% 7943 out of 7954
-    http_reqs......................: 7954   79.106958/s
+    http_req_duration..............: avg=7.72ms   min=884.3µs med=5.92ms   max=1.32s p(90)=9.57ms p(95)=12.62ms
+      { expected_response:true }...: avg=391.67ms min=30.7ms  med=106.11ms max=1.32s p(90)=1.05s  p(95)=1.19s
+    http_req_failed................: 99.87% 7974 out of 7984
+    http_reqs......................: 7984   79.454301/s
 
     EXECUTION
-    iteration_duration.............: avg=1.01s   min=1s      med=1.01s   max=1.41s   p(90)=1.01s   p(95)=1.01s
-    iterations.....................: 7954   79.106958/s
-    vus............................: 5      min=4            max=100
+    iteration_duration.............: avg=1s       min=1s      med=1s       max=2.33s p(90)=1.01s  p(95)=1.01s
+    iterations.....................: 7984   79.454301/s
+    vus............................: 6      min=4            max=100
     vus_max........................: 100    min=100          max=100
 
     NETWORK
     data_received..................: 1.4 MB 14 kB/s
-    data_sent......................: 676 kB 6.7 kB/s
+    data_sent......................: 679 kB 6.8 kB/s

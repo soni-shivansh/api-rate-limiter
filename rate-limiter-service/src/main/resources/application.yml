@@ -1,0 +1,21 @@
+spring:
+  application:
+    name: rate-limiter-service
+
+  data:
+    redis:
+      host: localhost
+      port: 6379
+
+server:
+  port: 8082
+
+# Resilience4j Circuit Breaker Configuration
+resilience4j:
+  circuitbreaker:
+    instances:
+      redis: # The name we will give our circuit breaker
+        sliding-window-size: 10 # Counts the last 10 calls to decide if it should trip
+        failure-rate-threshold: 50 # If 50% of the last 10 calls fail, the circuit opens
+        wait-duration-in-open-state: 10s # Stays open for 10 seconds before trying again
+        permitted-number-of-calls-in-half-open-state: 5 # Allows 5 test-calls before closing fully

@@ -19,3 +19,11 @@ resilience4j:
         failure-rate-threshold: 50 # If 50% of the last 10 calls fail, the circuit opens
         wait-duration-in-open-state: 10s # Stays open for 10 seconds before trying again
         permitted-number-of-calls-in-half-open-state: 5 # Allows 5 test-calls before closing fully
+
+
+# Rate Limiter Configuration
+rate-limiter:
+  plans:
+    default:
+      bucket-capacity: 10 # Maximum number of requests allowed in the bucket
+      refill-rate-per-minute: 10 # Number of requests to refill every minute

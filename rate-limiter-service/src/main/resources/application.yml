@@ -27,3 +27,9 @@ rate-limiter:
     default:
       bucket-capacity: 10 # Maximum number of requests allowed in the bucket
       refill-rate-per-minute: 10 # Number of requests to refill every minute
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,prometheus

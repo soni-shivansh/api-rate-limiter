@@ -15,3 +15,9 @@ spring:
                 - Path=/api/** # Match any request starting with /api/
               filters:
                 - StripPrefix=1 # Remove the first part of the path (i.e., /api)
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,prometheus

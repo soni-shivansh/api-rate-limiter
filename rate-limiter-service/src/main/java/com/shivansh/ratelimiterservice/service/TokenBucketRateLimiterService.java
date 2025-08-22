@@ -37,12 +37,11 @@ public class TokenBucketRateLimiterService {
 
         RateLimiterProperties.Plan plan = rateLimiterProperties.getPlans().get("default");
 
-        String tokensKey = "rate_limiter:tokens:" + clientIp;
-        String timestampKey = "rate_limiter:timestamp:" + clientIp;
+        String userKey = "rate_limiter:" + clientIp;
 
         Long result = redisTemplate.execute(
                 redisScript,
-                List.of(tokensKey, timestampKey),
+                List.of(userKey),
                 String.valueOf(plan.getRefillRatePerMinute()),
                 String.valueOf(plan.getBucketCapacity()),
                 String.valueOf(Instant.now().getEpochSecond())

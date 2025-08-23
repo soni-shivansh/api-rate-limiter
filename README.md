@@ -1,13 +1,20 @@
 # High-Throughput API Rate Limiter
 
-This project is a complete, microservice-based API Rate Limiter built with Java 21, Spring Boot, and Redis. It's designed to act as a scalable gatekeeper that can be placed in front of any API to enforce usage policies and prevent abuse.
+[![License: Apache 2.0](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
 
-## Core Features
+A standalone, microservice-based API Rate Limiter built with Java 21, Spring Boot, and Redis. It's designed to be a scalable and resilient gatekeeper for any API, enforcing usage policies and preventing abuse.
 
-* **Standalone Service**: A dedicated microservice for rate limiting.
-* **Token Bucket Algorithm**: Implements the efficient and flexible Token Bucket algorithm for handling bursty traffic while maintaining a steady average rate.
-* **Distributed & Scalable**: Uses a centralized Redis cache, allowing multiple instances of the rate limiter to share state seamlessly.
-* **Microservice Architecture**: Integrated using a Spring Cloud Gateway, demonstrating a real-world, scalable architecture pattern.
+## Why This Project?
+
+In a world of distributed systems, protecting your APIs from overuse and ensuring fair usage is critical. This project provides a ready-to-use, high-performance rate limiting solution that can be easily integrated into any microservices architecture. It's built on industry-standard technologies and best practices, making it a reliable and scalable choice for any project.
+
+## Key Features
+
+* **Standalone Service**: A dedicated microservice for rate limiting, decoupled from your core business logic.
+* **Token Bucket Algorithm**: Implements the efficient and flexible Token Bucket algorithm to handle bursty traffic while maintaining a steady average rate.
+* **Distributed & Scalable**: A centralized Redis cache allows multiple instances of the rate limiter to share state seamlessly.
+* **Resilient by Design**: A circuit breaker prevents cascading failures when Redis is unavailable.
+* **Microservice Architecture**: Integrated with a Spring Cloud Gateway, demonstrating a real-world, scalable architecture pattern.
 
 ## Architecture Diagram
 
@@ -30,6 +37,14 @@ Here is the high-level architecture of the system:
 * **Docker**: For running Redis.
 * **Maven**: For project dependency management.
 * **k6**: For load testing and performance benchmarking.
+
+## Getting Started
+
+### Prerequisites
+
+* Java 21
+* Docker
+* Maven
 
 ## How to Run the Project
 
@@ -59,6 +74,17 @@ Here is the high-level architecture of the system:
     ```bash
     curl http://localhost:8080/api/v1/products
     ```
+## Configuration
+
+The rate limiter can be configured in the `rate-limiter-service/src/main/resources/application.yml` file.
+
+```
+rate-limiter:
+  plans:
+    default:
+      bucket-capacity: 10 # Maximum number of requests allowed in the bucket
+      refill-rate-per-minute: 10 # Number of requests to refill every minute
+```
 
 ## Performance Benchmark
 

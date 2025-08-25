@@ -33,7 +33,7 @@ public class RateLimiterController {
         if (rateLimiterService.isAllowed(clientIp)) {
             return webClientBuilder.build()
                     .get()
-                    .uri("http://localhost:8081/products") // The actual protected service
+                    .uri("http://product-service:8081/products") // The actual protected service
                     .retrieve()
                     .toEntity(String.class)
                     .onErrorResume(WebClientResponseException.class,
